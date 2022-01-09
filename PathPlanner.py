@@ -65,7 +65,18 @@ def is_collision(sx, sy, gx, gy, rr, obstacle_kd_tree):
     dx = gx - sx
     dy = gy - sy
     yaw = math.atan2(gy - sy, gx - sx)
-    d = math.hypot(dx, dy)
+    d = math.hypot(dx, dy) #La distancia entre los puntos se puede calcular con scipy.spatial import distance distance.euclidean((sx, xy), (gx, gy))
+                           #Una colisión significa que la distancia entre el origen y el destino es mayor que la distancia entre el origen y algún obstáculo
+                           #Se puede calcular la distancia de cada origen a todos los obstáculos
+
+    #Mira a ver si el robot entra en los puntos intermedios entre origen y fin.
+    #El arcotangente dá el angulo entre los dos puntos. Con el cos dará la dirección en la que se tiene que mover en x, el seno en y
+    #Entonces mira a ver si el punto tiene colisión con los bordes (si el punto tiene una ditancia menor que el tamaño del robot a algún borde)
+    #Se mueve tantas veces como sea necesario (d/rr esto es porque si hay una distancia de 10 entre origen y destino solo se puede mover el robot 2 unidades para ver si entre medias hay un obstáculo)
+    #Se mueve marcado rr puntos en la dirección que marque el coseno y el seno.
+    #Creo que no es necesario calcular si hay colisión en el punto final. Porque lo único que hace es mirar si el robot entra en ese punto, esto ya se ha comprobado al generar los puntos. 
+    #De la misma forma no es necesario comprobar si el robot tiene colisión en el punto de origen, solo si tiene colisión entre el origen y destino.
+    #Es decir si d/D < 1 no hace falta comprobar nada, porque ya está en un punto válido, si no se mueve y chekea (en vez de chekear y mover porque el primer punto ya sé que es válido (origen))
 
     if d >= MAX_EDGE_LEN:
         return True
@@ -96,13 +107,18 @@ def generate_road_map(sample_x, sample_y, rr, obstacle_kd_tree):
     robot_radius: Robot Radius[m]
     obstacle_kd_tree: KDTree object of obstacles
     """
+    #Se puede calcular una matriz de distancias(menos óptimo que un grafo pero se menciona que se puede utilizar este método que es más óptimo pero más complicado de implementar)
+    #Se puede usar list.sort() para ordenar que lo hace en nlogn. Seguramente sea mucho mejor usar los grafos pero se puede hacer así también. Se puede poner un timer para comparar tiempos y dejar las dos implementaciones.
+    #Anotar que no se guardan las coordenadas de los vecinos sino que se guarda su id del sample points, para no redundar.
 
     road_map = []
     n_sample = len(sample_x)
     sample_kd_tree = KDTree(np.vstack((sample_x, sample_y)).T)
 
+#lo del n_sample sobra en el for y lo de zip también.
     for (i, ix, iy) in zip(range(n_sample), sample_x, sample_y):
 
+        #Aquí se ordenarían las distancias del nodo i
         dists, indexes = sample_kd_tree.query([ix, iy], k=n_sample)
         edge_id = []
 
@@ -112,6 +128,10 @@ def generate_road_map(sample_x, sample_y, rr, obstacle_kd_tree):
 
             if not is_collision(ix, iy, nx, ny, rr, obstacle_kd_tree):
                 edge_id.append(indexes[ii])
+                #print('Nodo nº:' + str(ii) + ' Distancia: ' + str(dists[ii]))
+                #print(indexes[ii])
+                #print('Origen: [' + str(ix) + ',' + str(iy) + ']')
+                #print('Destino: [' + str(nx) + ',' + str(ny) + ']')
 
             if len(edge_id) >= N_KNN:
                 break
@@ -279,6 +299,12 @@ def main(rng=None):
     for i in range(40):
         ox.append(40.0)
         oy.append(60.0 - i)
+    for i in range(7):
+        ox.append(i)
+        oy.append(20)
+    for i in range(13, 20):
+        ox.append(i + 1)
+        oy.append(40)
 
     if show_animation:
         plt.plot(ox, oy, ".k")
@@ -286,6 +312,7 @@ def main(rng=None):
         plt.plot(gx, gy, "^c")
         plt.grid(True)
         plt.axis("equal")
+        print('INICIAL')
 
     rx, ry = prm_planning(sx, sy, gx, gy, ox, oy, robot_size, rng=rng)
 
@@ -295,6 +322,7 @@ def main(rng=None):
         plt.plot(rx, ry, "-r")
         plt.pause(0.001)
         plt.show()
+        
 
 
 if __name__ == '__main__':
