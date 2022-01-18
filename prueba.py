@@ -27,7 +27,7 @@ class Node:
 
 
 #AUXILIAR METHODS
-def generate_maze():
+def generate_maze_easy():
     ox = []
     oy = []
 
@@ -49,14 +49,94 @@ def generate_maze():
     for i in range(40):
         ox.append(40.0)
         oy.append(60.0 - i)
-    for i in range(7):
+    for i in range(10):
         ox.append(i)
         oy.append(20)
-    for i in range(13, 20):
+    for i in range(10, 20):
         ox.append(i + 1)
         oy.append(40)
 
     return ox, oy
+def generate_maze_medium():
+    ox = []
+    oy = []
+
+    for i in range(60):
+        ox.append(i)
+        oy.append(0.0)
+    for i in range(60):
+        ox.append(60.0)
+        oy.append(i)
+    for i in range(61):
+        ox.append(i)
+        oy.append(60.0)
+    for i in range(61):
+        ox.append(0.0)
+        oy.append(i)
+    for i in range(40):
+        ox.append(20.0)
+        oy.append(i)
+    for i in range(40):
+        ox.append(40.0)
+        oy.append(60.0 - i)
+    for i in range(10):
+        ox.append(i)
+        oy.append(20)
+    for i in range(10, 20):
+        ox.append(i + 1)
+        oy.append(40)
+    for i in range(20, 30):
+        ox.append(i)
+        oy.append(10)
+    for i in range(20, 30):
+        ox.append(i + 1)
+        oy.append(25)
+
+    return ox, oy
+
+def generate_maze_hard():
+    ox = []
+    oy = []
+
+    for i in range(60):
+        ox.append(i)
+        oy.append(0.0)
+    for i in range(60):
+        ox.append(60.0)
+        oy.append(i)
+    for i in range(61):
+        ox.append(i)
+        oy.append(60.0)
+    for i in range(61):
+        ox.append(0.0)
+        oy.append(i)
+    for i in range(40):
+        ox.append(20.0)
+        oy.append(i)
+    for i in range(40):
+        ox.append(40.0)
+        oy.append(60.0 - i)
+    for i in range(10):
+        ox.append(i)
+        oy.append(20)
+    for i in range(10, 20):
+        ox.append(i + 1)
+        oy.append(40)
+    for i in range(20, 30):
+        ox.append(i)
+        oy.append(10)
+    for i in range(20, 30):
+        ox.append(i + 1)
+        oy.append(25)
+    for i in range(40, 50):
+        ox.append(i)
+        oy.append(30)
+    for i in range(40, 50):
+        ox.append(i + 1)
+        oy.append(43)
+
+    return ox, oy
+
 
 def distance(ax, ay, bx, by):
     dist = []
@@ -265,9 +345,11 @@ def main(rng=None):
     sy = 15.0  # start point y
     gx = 50.0  # goal point x
     gy = 50.0  # goal point y
-    rs = 5.0   # robot size
+    rs = 3.0   # robot size
 
-    ox, oy = generate_maze() #obstacle x, obstacle y  
+    ox, oy = generate_maze_easy() #obstacle x, obstacle y  
+    #ox, oy = generate_maze_medium() #obstacle x, obstacle y  
+    #ox, oy = generate_maze_hard() #obstacle x, obstacle y  
 
     plt.plot(ox, oy, ".k")
     plt.plot(sx, sy, "^r")
