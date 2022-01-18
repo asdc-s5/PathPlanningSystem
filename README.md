@@ -71,7 +71,7 @@ Unlike the *Sakai, Atsushi et al* work that uses a kd-tree to find nearest neigh
 
 Finally, it is worth mentioning that there are better options than Dijkstra's algorithm for optimal path finding, such as the A* algorithm, among others. 
 
-##Further work
+## Further work
 
 * Reducing the implementation complexity
 * Implementing a more efficient search algorithm
