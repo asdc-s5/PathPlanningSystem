@@ -10,7 +10,10 @@ Required libraries:
 * [matplotlib.pyplot](https://numpy.org/) presented in *Hunter, John D*.
 * [scipy.spatial](https://docs.scipy.org/doc/scipy/index.html) *Virtanen, Pauli et al*.
 
-The main method calls a method that returns the obstacle points of the maze. There are three diferent methods with different complexity. By default generate_maze_easy() is executed which generates the simplest maze. To generate mazes of other difficulty you can comment out the line of code that calls this method and uncomment the lines that call the other methods
+The main method calls a method that returns the obstacle points of the maze. There are three diferent methods with different complexity. By default generate_maze_easy() is executed which generates the simplest maze. To generate mazes of other difficulty you can comment out the line of code that calls this method and uncomment the lines that call the other methods.
+
+Also note that the default value of the robot size is 3. To change this, change the rs variable in the
+
 
 ## Analysis 
 
