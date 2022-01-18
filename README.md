@@ -1,1 +1,25 @@
 # PathPlanningSystem
+
+## Abstract
+In this work, an implementation of the probabilistic road maps algorithm has been carried out. It is based on the work previously done in *Sakai, Atsushi et al*. From this work the architecture of the implementation and its implementation of the dijkstra algorithm for optimal path finding has been taken. 
+
+## Installation requirements
+This code only needs a python 3 installation and the libraries indicated in the header to work.
+Required libraries:
+* [numpy](https://numpy.org/) presented in *Harris, Charles R. et al*.
+* [matplotlib.pyplot](https://numpy.org/) presented in *Hunter, John D*.
+* [scipy.spatial](https://docs.scipy.org/doc/scipy/index.html) *Virtanen, Pauli et al*.
+
+## Analysis 
+
+There are three different mazes with three levels of difficulty. The difficulty varies according to the number of obstacles and the space available for the movement of the robot. The more obstacles there are, the less movement, which means a more difficult maze. The problem is posed as a robot of size r that has to navigate from an initial point to an end point. These points have to be valid i.e. the robot must be able to fit into the point without coming into contact with any obstacle. The three levels of difficulty have been proposed to be solved with robots of size r = 3 and r = 5. The following are the tests that have been performed on the different levels and configurations for the robot
+
+
+
+
+
+## References
+Sakai, Atsushi et al. “PythonRobotics: a Python code collection of robotics algorithms.” ArXiv abs/1808.10703 (2018): n. pag.
+Harris, Charles R. et al. “Array programming with NumPy.” Nature 585 (2020): 357 - 362.
+Hunter, John D.. “Matplotlib: A 2D Graphics Environment.” Computing in Science & Engineering 9 (2007): n. pag.
+Virtanen, Pauli et al. “SciPy 1.0: fundamental algorithms for scientific computing in Python.” Nature Methods 17 (2020): 261 - 272.
