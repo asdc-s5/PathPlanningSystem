@@ -17,7 +17,7 @@ Also note that the default value of the robot size is 3. To change this, change 
 
 ## Analysis 
 
-There are three different mazes with three levels of difficulty. The difficulty varies according to the number of obstacles and the space available for the movement of the robot. The more obstacles there are, the less movement, which means a more difficult maze. The problem is posed as a robot of size r that has to navigate from an initial point to an end point. These points have to be valid i.e. the robot must be able to fit into the point without coming into contact with any obstacle. The three levels of difficulty have been proposed to be solved with robots of size r = 3 and r = 5. The following are the tests that have been performed on the different levels and configurations for the robot.
+There are three different mazes with three levels of difficulty. The difficulty varies according to the number of obstacles and the space available for the movement of the robot. The more obstacles there are, the less movement, which means a more difficult maze. The problem is posed as a robot of size r that has to navigate from an initial point to an end point on a maze with a size 60x60 with 500 points randomly generated for the road map. These points have to be valid i.e. the robot must be able to fit into the point without coming into contact with any obstacle. The three levels of difficulty have been proposed to be solved with robots of size r = 3 and r = 5. The following are the tests that have been performed on the different levels and configurations for the robot.
 
 * Mode: EASY. Robot_size=3
 <p align="center">
@@ -73,8 +73,10 @@ Finally, it is worth mentioning that there are better options than Dijkstra's al
 
 ## Further work
 
-* Reducing the implementation complexity
-* Implementing a more efficient search algorithm
+* Reducing the implementation complexity.
+* Implementing a more efficient search algorithm.
+* Generate new mazes.
+* Change the initial and final points.
 
 ## References
 Sakai, Atsushi et al. “PythonRobotics: a Python code collection of robotics algorithms.” ArXiv abs/1808.10703 (2018): n. pag.
