@@ -149,8 +149,6 @@ def distance(ax, ay, bx, by):
 
 def order_distances(ix, iy, rx, ry):
     dist = distance(ix, iy, rx, ry)
-    #dist = [elem for elem in dist if elem < MAX_EDGE_LEN] #No se pueden borrar los vecinos que tengan distancia mayor a la máxima porque se pierde la referencia de los índices. Habría que mantener el registro de los índices
-    #index, sorted_list = zip(*sorted(enumerate(dist)), key=itemgetter(1))
     index = sorted(range(len(dist)), key=lambda k: dist[k])
     return index
 
@@ -234,7 +232,7 @@ def generate_road_map(rx, ry, ox, oy, rs):
         knn_list_x = []
         knn_list_y = []
 
-        for j in range(0, len(index)): #Si no funciona empezar en 1
+        for j in range(0, len(index)):
             knn_x = rx[index[j]]
             knn_y = ry[index[j]]
             #if not is_collision(ix, iy, knn_x, knn_y, ox, oy, rs):
